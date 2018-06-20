@@ -1,0 +1,32 @@
+<html>
+    <head>
+        <title>reCAPTCHA demo</title>
+        <script type="text/javascript">
+            var onloadCallback = function() {
+                grecaptcha.render('html_element', {
+                                  'sitekey' : '6Lek0F8UAAAAACK6VxWjvl6Khm4w7dgVQNsa-aMG',
+                                  'callback': onSubmit
+                                  });
+            };
+        
+            var post = function(value) {
+                window.webkit.messageHandlers.recaptcha.postMessage(value);
+            };
+        
+            var onSubmit = function(token) {
+                console.log(token);
+                post({token: token});
+            };
+        </script>
+    </head>
+    <body>
+        <form action="?" method="POST">
+            <div id="html_element"></div>
+            <br>
+            <input type="submit" value="Submit">
+                </form>
+        <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit"
+            async defer>
+            </script>
+    </body>
+</html>
