@@ -16,7 +16,6 @@ class ViewController: UIViewController, WKNavigationDelegate, WKScriptMessageHan
     
     override func loadView() {
         super.loadView()
-        //webView.navigationDelegate = self
         userContentController.add(self, name: "recaptcha")
         let config = WKWebViewConfiguration()
         config.userContentController = userContentController
@@ -31,9 +30,8 @@ class ViewController: UIViewController, WKNavigationDelegate, WKScriptMessageHan
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        //self.view.addSubview(self.webView)
         do {
-            guard let filePath = Bundle.main.path(forResource: "test", ofType: "html")
+            guard let filePath = Bundle.main.path(forResource: "recaptcha", ofType: "html")
                 else {
                     // File Error
                     print ("File reading error")
@@ -41,21 +39,12 @@ class ViewController: UIViewController, WKNavigationDelegate, WKScriptMessageHan
             }
 
             let contents =  try String(contentsOfFile: filePath, encoding: .utf8)
-            let baseUrl = URL.init(string: "http://localhost") //URL(fileURLWithPath: filePath)
+            let baseUrl = URL.init(string: "http://localhost")
             webView.loadHTMLString(contents as String, baseURL: baseUrl)
         }
         catch {
             print ("File HTML error")
         }
-        
-        // 1
-//        let url = URL(string: "https://www.userede.com.br/Acesso/Criacao/index.html")!
-//        webView.load(URLRequest(url: url))
-//
-        // 2
-        let refresh = UIBarButtonItem(barButtonSystemItem: .refresh, target: webView, action: #selector(webView.reload))
-        toolbarItems = [refresh]
-        navigationController?.isToolbarHidden = false
     }
     
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {

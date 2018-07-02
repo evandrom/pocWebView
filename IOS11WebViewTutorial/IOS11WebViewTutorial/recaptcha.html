@@ -1,10 +1,20 @@
 <html>
     <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+            body {
+                background-color: #EFE9E5;
+            }
+        #g-recaptcha > div {
+            margin: 0 auto;
+            width: 900px;
+        }
+        </style>
         <title>reCAPTCHA demo</title>
         <script type="text/javascript">
             var onloadCallback = function() {
-                grecaptcha.render('html_element', {
-                                  'sitekey' : '6Lek0F8UAAAAACK6VxWjvl6Khm4w7dgVQNsa-aMG',
+                grecaptcha.render('g-recaptcha', {
+                                  'sitekey' : '6LcihAoUAAAAAPsgi515ZLOyWJqr4iOvOmk2SxJC',
                                   'callback': onSubmit
                                   });
             };
@@ -20,13 +30,10 @@
         </script>
     </head>
     <body>
-        <form action="?" method="POST">
-            <div id="html_element"></div>
-            <br>
-            <input type="submit" value="Submit">
-                </form>
+        <div id="g-recaptcha">
+        </div>
         <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit"
             async defer>
-            </script>
+        </script>
     </body>
 </html>
